@@ -7,9 +7,9 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'segredo-lista'
 socketio = SocketIO(app, cors_allowed_origins="*")
 
-# Banco de dados persistente
-os.makedirs("/data", exist_ok=True)
-DB_PATH = "/data/presentes.json"
+# Banco de dados persistente (Render-friendly)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "presentes.json")
 db = TinyDB(DB_PATH)
 
 # Categorias iniciais
